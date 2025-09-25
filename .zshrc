@@ -1,13 +1,7 @@
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 
-# Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
-# Set name of the theme to load --- if set to "random", it will
-# load a random theme each time Oh My Zsh is loaded, in which case,
-# to know which specific one was loaded, run: echo $RANDOM_THEME
-# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
+export EDITOR=nvim
 ZSH_THEME="robbyrussell"
 
 # Set list of themes to pick from when loading at random
@@ -105,6 +99,8 @@ source $ZSH/oh-my-zsh.sh
 
 ## [Completion]
 ## Completion scripts setup. Remove the following line to uninstall
+#
 [[ -f /home/nerfthisdev/.dart-cli-completion/zsh-config.zsh ]] && . /home/nerfthisdev/.dart-cli-completion/zsh-config.zsh || true
+eval "$(starship init zsh)"
 ## [/Completion]
 
