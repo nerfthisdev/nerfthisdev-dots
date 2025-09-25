@@ -1,0 +1,7 @@
+backend = "fastresize"
+color_space = "lch"
+palette = "dark"
+
+[templates]
+hypr.template = 'colors-hypr.conf'
+hypr.target = '~/.config/hypr/themes/wallust.conf'

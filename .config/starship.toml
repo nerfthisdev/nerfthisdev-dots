@@ -1,122 +1,200 @@
-#Location: ~/.config/starship.toml
-#What_is_starship: https://starship.rs/
 
-add_newline = true
-command_timeout = 2000
+"$schema" = 'https://starship.rs/config-schema.json'
 
-format = """$env_var$os$username$hostname$kubernetes$directory$git_branch$git_status$python
-$character
-"""
+format = """
+[╭](bold overlay1)$username\
+$directory\
+$git_branch\
+$git_status\
+$c\
+$rust\
+$golang\
+$nodejs\
+$php\
+$java\
+$kotlin\
+$haskell\
+$python\
+$lua\
+$docker_context\
+$line_break$character"""
 
-[character]
-success_symbol = "╰⎯"
-error_symbol = "╰⎯"
-# ╭╴ ╰─
+palette = 'nord'
 
-[env_var]
-symbol = "╭╴"
-variable = 'SHELL'
-format = "$symbol"
-disabled = false
+[palettes.nord]
+rosewater = "#f0c674"
+flamingo = "#cc6666"
+pink = "#b294bb"
+orange = "#de935f"
+red = "#cc6666"
+maroon = "#a54242"
+peach = "#d08770"
+yellow = "#f0c674"
+green = "#8abeb7"
+teal = "#8abeb7"
+sky = "#81a2be"
+sapphire = "#81a2be"
+blue = "#5e81ac"
+lavender = "#b48ead"
+text = "#d8dee9"
+subtext1 = "#e5e9f0"
+subtext0 = "#eceff4"
+overlay2 = "#4c566a"
+overlay1 = "#434c5e"
+overlay0 = "#3b4252"
+surface2 = "#2e3440"
+surface1 = "#2e3440"
+surface0 = "#2e3440"
+base = "#2e3440"
+mantle = "#3b4252"
+crust = "#434c5e"
 
-
-#warp-Drop ugly default prompt characters
-#success_symbol = ""
-#error_symbol = ""
-
-# ---
-
+# OS Module
 [os]
-format = '[$symbol](bold white) '   
 disabled = false
+style = "fg:text"
 
 [os.symbols]
-Windows = ' '
-Arch = '󰣇'
-Ubuntu = ''
-Macos = '󰀵'
-Unknown = '󰠥'
+Windows = "󰍲"
+Ubuntu = "󰕈"
+SUSE = ""
+Raspbian = "󰐿"
+Mint = "󰣭"
+Macos = ""
+Manjaro = ""
+Linux = "󰌽"
+Gentoo = "󰣨"
+Fedora = "󰣛"
+Alpine = ""
+Amazon = ""
+Android = ""
+Arch = "󰣇"
+Artix = "󰣇"
+CentOS = ""
+Debian = "󰣚"
+Redhat = "󱄛"
+RedHatEnterprise = "󱄛"
 
-# ---y
-
-# Shows the username
+# Username Module
 [username]
-style_user = 'yellow bold'
-style_root = 'black bold'
-format = '[//](black bold) [$user](#2883ff) ' # 2883ff
-disabled = false
 show_always = true
+style_user = "fg:blue"
+style_root = "fg:blue"
+format = '[ $user ]($style)'
 
-# Shows the hostname
-[hostname]
+# Local IP Module
+[localip]
 ssh_only = false
-format = '[//](black bold) [$hostname](bold blue) '
+style = "fg:surface0"
+format = '[ $localipv4 ]($style)'
 disabled = false
 
-# Shows current directory
+# Directory Module
 [directory]
-truncation_length = 0
-truncation_symbol = '…/'
-home_symbol = '~'
-# read_only_style = '197'
-read_only = '  '
-format = '[//](black bold) [$path]($style)[$read_only]($read_only_style) '
-style = '#7ed1fb' # yellow bold
+style = "fg:peach"
+format = "[ $path ]($style)"
+truncation_length = 3
+truncation_symbol = "…/"
 
+[directory.substitutions]
+"Documents" = "󰈙 "
+"Downloads" = " "
+"Music" = "󰝚 "
+"Pictures" = " "
+"Developer" = "󰲋 "
 
-# Shows current git branch
+# Git Branch Module
 [git_branch]
-# symbol = ' '
-symbol = ' '
-format = '[//](black bold) [$symbol\[$branch\]]($style) '
-# truncation_length = 0
-# truncation_symbol = '…/'
-style = 'bold green'
+symbol = ""
+style = "fg:teal"
+format = '[[ $symbol $branch ](fg:green)]($style)'
 
-# Shows current git status
+# Git Status Module
 [git_status]
-disabled = true
-format = '[ $all_status $ahead_behind]($style) '
-style = 'bold green'
-conflicted = '🏳'
-up_to_date = ''
-untracked = ' '
-ahead = '⇡${count}'
-diverged = '⇕⇡${ahead_count}⇣${behind_count}'
-behind = '⇣${count}'
-stashed = ' '
-modified = ' '
-staged = '[++\($count\)](green)'
-renamed = '襁 '
-deleted = ' '
+style = "fg:teal"
+format = '[[($all_status$ahead_behind )](fg:green)]($style)'
 
-# Shows kubernetes context and namespace
-[kubernetes]
-format = 'via [󱃾 $context\($namespace\)](bold purple) '
+# Node.js Module
+[nodejs]
+symbol = ""
+style = "fg:teal"
+format = '[[ $symbol( $version) ](fg:teal)]($style)'
+
+# C Module
+[c]
+symbol = " "
+style = "fg:teal"
+format = '[[ $symbol( $version) ](fg:teal)]($style)'
+
+# Rust Module
+[rust]
+symbol = ""
+style = "fg:teal"
+format = '[[ $symbol( $version) ](fg:teal)]($style)'
+
+# Go Module
+[golang]
+symbol = ""
+style = "fg:teal"
+format = '[[ $symbol( $version) ](fg:teal)]($style)'
+
+# PHP Module
+[php]
+symbol = ""
+style = "fg:teal"
+format = '[[ $symbol( $version) ](fg:teal)]($style)'
+
+# Java Module
+[java]
+symbol = " "
+style = "fg:teal"
+format = '[[ $symbol( $version) ](fg:teal)]($style)'
+
+# Kotlin Module
+[kotlin]
+symbol = ""
+style = "fg:teal"
+format = '[[ $symbol( $version) ](fg:teal)]($style)'
+
+# Haskell Module
+[haskell]
+symbol = ""
+style = "fg:teal"
+format = '[[ $symbol( $version) ](fg:teal)]($style)'
+
+# Python Module
+[python]
+symbol = ""
+style = "fg:teal"
+format = '[[ $symbol( $version) ](fg:teal)]($style)'
+
+# Lua Module
+[lua]
+symbol = "󰢱"
+style = "fg:teal"
+format = '[[ $symbol( $version) ](fg:teal)]($style)'
+
+# Docker Context Module
+[docker_context]
+symbol = ""
+style = "fg:mantle"
+format = '[[ $symbol( $context) ](fg:color_bg3)]($style)'
+
+# Time Module
+[time]
+disabled = false
+time_format = "%R"
+style = "fg:peach"
+format = '[[  $time ](fg:purple)]($style)'
+
+# Line Break Module
+[line_break]
 disabled = false
 
-# ---
+# Character Module
+[character]
+format = """
+[╰─$symbol](fg:overlay1) """
+success_symbol = '[](fg:bold text)'
+error_symbol = '[×](fg:bold red)'
 
-[vagrant]
-disabled = true
-
-[docker_context]
-disabled = true
-
-[helm]
-disabled = true
-
-[python]
-symbol = '󰌠'
-python_binary = ['./venv/bin/python', 'python', 'python3', 'python2']
-format = '[//](black bold) [${symbol} ${pyenv_prefix}(${version} )(\($virtualenv\) )]($style) '
-
-
-[nodejs]
-disabled = true
-
-[ruby]
-disabled = true
-
-[terraform]
-disabled = true
