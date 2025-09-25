@@ -102,3 +102,9 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
+## [Completion]
+## Completion scripts setup. Remove the following line to uninstall
+[[ -f /home/nerfthisdev/.dart-cli-completion/zsh-config.zsh ]] && . /home/nerfthisdev/.dart-cli-completion/zsh-config.zsh || true
+## [/Completion]
+
