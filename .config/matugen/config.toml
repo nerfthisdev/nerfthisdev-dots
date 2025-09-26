@@ -1,0 +1,5 @@
+[config]
+
+[templates.hypr]
+input_path = '~/.config/matugen/templates/hypr-colors.conf'
+output_path = '~/.config/hypr/themes/colors-matugen.conf'

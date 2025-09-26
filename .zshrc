@@ -1,6 +1,5 @@
 
 # Modular config load
-zmodload zsh/zprof
 
 ## INIT
 
@@ -21,6 +20,7 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 alias c="clear"
 alias ll="eza -lh"
 alias l="eza -lah"
+alias cd="z"
 
 
 # Completion
@@ -28,12 +28,26 @@ alias l="eza -lah"
 
 
 
-export NVM_DIR="$HOME/.config/nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" 
 
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+# --- Fast completion init with caching ---
+# Skip OMZ compfix (expensive compaudit) unless you need it
+export ZSH_DISABLE_COMPFIX=true
+
+autoload -Uz compinit
+
+# Reuse .zcompdump for 24 hours; otherwise do a full init
+ZCD="${ZDOTDIR:-$HOME}/.zcompdump"
+if [[ -n ${ZCD}(#qN.mh+24) ]]; then
+  compinit -C     # trust cached dump, skip security checks
+else
+  compinit -i     # skip insecure dirs prompts
+fi
+
+# Optionally compile the dump to speed parsing
+[[ -f ${ZCD} ]] && command -v zcompile >/dev/null && zcompile -R -- ${ZCD}.zwc ${ZCD}
 
 
 plugins=(
@@ -50,8 +64,10 @@ plugins=(
     zsh-bat
 )
 
+
 # Set-up oh-my-zsh
 source $ZSH/oh-my-zsh.sh
+source ~/.config/nnn/nnn.zsh
 
 # -----------------------------------------------------
 # Set-up FZF key bindings (CTRL R for fuzzy history finder)
@@ -64,4 +80,12 @@ eval "$(zoxide init zsh)"
 eval "$(starship init zsh)"
 
 
-zprof
+
+# fnm
+FNM_PATH="/home/nerfthisdev/.local/share/fnm"
+if [ -d "$FNM_PATH" ]; then
+  export PATH="$FNM_PATH:$PATH"
+  eval "`fnm env`"
+fi
+
+
