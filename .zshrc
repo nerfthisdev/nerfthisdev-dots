@@ -1,10 +1,39 @@
 
-export ZSH="$HOME/.oh-my-zsh"
+# Modular config load
+zmodload zsh/zprof
 
+## INIT
+
+## Exports
 export EDITOR=nvim
-ZSH_THEME="robbyrussell"
+export ZSH="$HOME/.oh-my-zsh"
+export BUN_INSTALL="$HOME/.bun"
 
 
+# PATH
+export PATH=$PATH:/home/nerfthisdev/.spicetify
+export PATH=~/.local/bin:$PATH
+export PATH=$PATH:$HOME/go/bin
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+
+# Alias 
+alias c="clear"
+alias ll="eza -lh"
+alias l="eza -lah"
+
+
+# Completion
+[ -s "/home/nerfthisdev/.bun/_bun" ] && source "/home/nerfthisdev/.bun/_bun"
+
+
+
+export NVM_DIR="$HOME/.config/nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" 
+
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 
 
 plugins=(
@@ -21,54 +50,18 @@ plugins=(
     zsh-bat
 )
 
+# Set-up oh-my-zsh
 source $ZSH/oh-my-zsh.sh
 
+# -----------------------------------------------------
+# Set-up FZF key bindings (CTRL R for fuzzy history finder)
+# -----------------------------------------------------
 source <(fzf --zsh)
-# User configuration
 
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-export PATH=~/.local/bin:$PATH
-export EDITOR='nvim'
-
-# ALIASES
-
-alias c="clear"
-alias ll="eza -lh"
-alias l="eza -lah"
-
-# Set personal aliases, overriding those provided by Oh My Zsh libs,
-# plugins, and themes. Aliases can be placed here, though Oh My Zsh
-# users are encouraged to define aliases within a top-level file in
-# the $ZSH_CUSTOM folder, with .zsh extension. Examples:
-# - $ZSH_CUSTOM/aliases.zsh
-# - $ZSH_CUSTOM/macos.zsh
-# For a full list of active aliases, run `alias`.
 eval "$(zoxide init zsh)"
 
-
-#
-[[ -f /home/nerfthisdev/.dart-cli-completion/zsh-config.zsh ]] && . /home/nerfthisdev/.dart-cli-completion/zsh-config.zsh || true
+# prompt
 eval "$(starship init zsh)"
-## [/Completion]
 
 
-export NVM_DIR="$HOME/.config/nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-# bun completions
-[ -s "/home/nerfthisdev/.bun/_bun" ] && source "/home/nerfthisdev/.bun/_bun"
-
-# bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
-
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="$HOME/.sdkman"
-[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
-
-export PATH=$PATH:/home/nerfthisdev/.spicetify
+zprof
