@@ -8,7 +8,7 @@ return {
           pane = 1,
           hl = "header",
           section = "terminal",
-          cmd = "chafa ~/wallpaper/makoto.jpg --format symbols --symbols vhalf --size 60x80 --stretch; sleep .1",
+          cmd = "chafa ~/Downloads/wallpapers/anime.jpg --format symbols --symbols vhalf --size 60x80 --stretch; sleep .1",
           height = 5,
           padding = 1,
         },

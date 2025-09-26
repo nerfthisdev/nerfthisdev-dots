@@ -4,4 +4,4 @@ palette = "dark"
 
 [templates]
 hypr.template = 'colors-hypr.conf'
-hypr.target = '~/.config/hypr/themes/wallust.conf'
+hypr.target = '~/.config/hypr/colors.conf'
