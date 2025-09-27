@@ -50,20 +50,22 @@
     "format-disconnected": "Disconnected ⚠",
     "on-click": "sh ~/scripts/rofi-wifi-menu/rofi-wifi-menu.sh"
   },
-  //"cpu": {
-  //    "format": "  {usage}%",
-  //    "tooltip": true
-  //},
-  //"memory": {
-  //    "format": "  {}%",
-  //"tooltip": true
-  //},
-  "temperature": {
-    "interval": 10,
-    "hwmon-path": "/sys/devices/platform/coretemp.0/hwmon/hwmon4/temp1_input",
-    "critical-threshold": 100,
-    "format-critical": " {temperatureC}",
-    "format": " {temperatureC}°C"
+  "hyprland/window": {
+    "format": "{}",
+    "rewrite": {
+      "(.*) — Zen Browser": "Zen Browser",
+      "(.*) — Mozilla Firefox": "Mozilla Firefox",
+      "(.*) - zsh": "> [$1]"
+    }
+  },
+
+  "cpu": {
+    "format": "  {usage}%",
+    "tooltip": true
+  },
+  "memory": {
+    "format": "  {}%",
+    "tooltip": true
   },
   "hyprland/language": {
     "format": "  {}",

@@ -3,10 +3,10 @@
   font-family:
     "Fira Sans Semibold", FontAwesome, Roboto, Helvetica, Arial, sans-serif;
   font-size: 12px;
+  min-height: 0;
 }
 
 .modules-left,
-.modules-center,
 .modules-right {
   background: rgba(0, 0, 8, 0.7);
   margin: 5px 10px;
@@ -15,6 +15,13 @@
 }
 .modules-left {
   padding: 0;
+}
+
+#window {
+  background: rgba(0, 0, 8, 0.7);
+  margin: 5px 10px;
+  padding: 0 5px;
+  border-radius: 15px;
 }
 
 window#waybar {

@@ -3,7 +3,6 @@
   font-family:
     "Fira Sans Semibold", FontAwesome, Roboto, Helvetica, Arial, sans-serif;
   font-size: 12px;
-  transition: background-color 0.3s ease-out;
 }
 
 window#waybar {
@@ -12,11 +11,9 @@ window#waybar {
   font-family:
     SpaceMono Nerd Font,
     feather;
-  transition: background-color 0.5s;
 }
 
 .modules-left,
-.modules-center,
 .modules-right {
   background: rgba(0, 0, 8, 0.7);
   margin: 5px 10px;
@@ -106,9 +103,17 @@ window#waybar {
   color: #1793d1;
 }
 
-window#waybar.empty #window {
-  opacity: 0;
-  min-width: 0;
-  padding: 0;
-  margin: 0;
+#window {
+  background: rgba(0, 0, 8, 0.7);
+  margin: 5px 10px;
+  padding: 0 5px;
+  border-radius: 15px;
+}
+
+window#waybar.hidden {
+  opacity: 0.2;
+}
+
+#waybar.empty #window {
+  background-color: transparent;
 }

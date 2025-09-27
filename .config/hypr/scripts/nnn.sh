@@ -1,2 +1,2 @@
 #!/bin/sh
-exec kitty -e zsh -ic 'nnn -de'
+exec kitty --title 'nnn' -e zsh -ic 'nnn -de'
