@@ -1,2 +1,2 @@
 #!/bin/sh
-exec waybar -c ~/.config/waybar/config.jsonc -s ~/.config/waybar/styles.css
+exec waybar -c ~/.config/waybar/config.jsonc -s ~/.config/waybar/style.css
