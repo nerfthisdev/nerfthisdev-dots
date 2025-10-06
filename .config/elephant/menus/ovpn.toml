@@ -1,0 +1,14 @@
+name = "vpn"
+name_pretty = "VPN"
+icon = "network-wired"
+global_search = true
+
+[[entries]]
+text = "Austria up"
+action = "nmcli connection up Austria"
+icon = "network-wired"
+
+[[entries]]
+text = "Austria down"
+action = "nmcli connection down Austria"
+icon = "network-wired"
