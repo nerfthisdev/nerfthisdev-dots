@@ -21,6 +21,7 @@ alias c="clear"
 alias ll="eza -lh"
 alias l="eza -lah"
 alias cd="z"
+alias lg="lazygit"
 
 
 # Completion
