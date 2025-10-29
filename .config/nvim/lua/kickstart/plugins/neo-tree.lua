@@ -11,13 +11,20 @@ return {
   },
   lazy = false,
   keys = {
-    { '\\', ':Neotree reveal<CR>', desc = 'NeoTree reveal', silent = true },
+    { '\\', ':Neotree<CR>', desc = 'NeoTree', silent = true },
   },
   opts = {
+    close_if_last_window = true,
+    popup_border_style = 'NC',
     filesystem = {
+      bind_to_cwd = true,
+      follow_current_file = { enabled = true, leave_dirs_open = false },
+      use_libuv_file_watcher = true,
       window = {
         mappings = {
           ['\\'] = 'close_window',
+          ['l'] = 'open',
+          ['h'] = 'close_node',
         },
       },
     },

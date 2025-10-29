@@ -3,6 +3,7 @@ return {
   event = 'VimEnter',
   config = function()
     require('dashboard').setup {
+
       -- config
     }
   end,
