@@ -22,6 +22,7 @@ alias ll="eza -lh"
 alias l="eza -lah"
 alias cd="z"
 alias lg="lazygit"
+alias mvim='NVIM_APPNAME=nvim-mini nvim'
 
 
 # Completion
@@ -99,3 +100,17 @@ fi
 # This section can be safely removed at any time if needed.
 [[ ! -r '/home/nerfthisdev/.opam/opam-init/init.zsh' ]] || source '/home/nerfthisdev/.opam/opam-init/init.zsh' > /dev/null 2> /dev/null
 # END opam configuration
+
+# fnm
+FNM_PATH="/home/nerfthisdev/.local/share/fnm"
+if [ -d "$FNM_PATH" ]; then
+  export PATH="$FNM_PATH:$PATH"
+  eval "`fnm env`"
+fi
+
+# fnm
+FNM_PATH="/home/nerfthisdev/.local/share/fnm"
+if [ -d "$FNM_PATH" ]; then
+  export PATH="$FNM_PATH:$PATH"
+  eval "`fnm env`"
+fi

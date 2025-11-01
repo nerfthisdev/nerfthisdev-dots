@@ -14,6 +14,10 @@ return {
     { '\\', ':Neotree<CR>', desc = 'NeoTree', silent = true },
   },
   opts = {
+    source_selector = {
+      winbar = false,
+      statusline = false,
+    },
     close_if_last_window = true,
     popup_border_style = 'NC',
     filesystem = {
