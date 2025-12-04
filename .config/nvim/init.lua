@@ -70,6 +70,7 @@ vim.opt.listchars = { tab = '> ', trail = '·', nbsp = '␣' }
 -- Preview substitutions live, as you type!
 vim.o.inccommand = 'split'
 vim.o.cmdheight = 0
+vim.o.tabstop = 4
 
 -- Show which line your cursor is on
 vim.o.cursorline = true
@@ -598,8 +599,10 @@ require('lazy').setup({
         --    https://github.com/pmizio/typescript-tools.nvim
         --
         -- But for many setups, the LSP (`ts_ls`) will work just fine
-        -- ts_ls = {},
+        ts_ls = {},
+        ocamllsp = {},
         --
+        clangd = {},
         gopls = {
           settings = {
             gopls = {
@@ -612,6 +615,7 @@ require('lazy').setup({
                 compositeLiteralTypes = true,
                 functionTypeParameters = true,
               },
+              gofumpt = true,
             },
           },
         },
@@ -800,28 +804,16 @@ require('lazy').setup({
     },
   },
 
-  { -- You can easily change to a different colorscheme.
-    -- Change the name of the colorscheme plugin below, and then
-    -- change the command in the config to whatever the name of that colorscheme is.
-    --
-    -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
-    'folke/tokyonight.nvim',
-    priority = 1000, -- Make sure to load this before all the other start plugins.
+  {
+    'eldritch-theme/eldritch.nvim',
+    lazy = false,
+    priority = 1000,
     config = function()
-      ---@diagnostic disable-next-line: missing-fields
-      require('tokyonight').setup {
-        styles = {
-          comments = { italic = false }, -- Disable italics in comments
-        },
-      }
+      require('eldritch').setup {}
 
-      -- Load the colorscheme here.
-      -- Like many other themes, this one has different styles, and you could load
-      -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-      vim.cmd.colorscheme 'tokyonight-night'
+      vim.cmd.colorscheme 'eldritch'
     end,
   },
-
   -- Highlight todo, notes, etc in comments
   { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
 
@@ -837,13 +829,12 @@ require('lazy').setup({
       require('mini.ai').setup { n_lines = 500 }
       require('mini.indentscope').setup()
       require('mini.misc').setup()
-      require('mini.starter').setup()
+      require('mini.sessions').setup { autoread = true }
       -- Change current working directory based on the current file path. It
       -- searches up the file tree until the first root marker ('.git' or 'Makefile')
       -- and sets their parent directory as a current directory.
       -- This is helpful when simultaneously dealing with files from several projects.
-      MiniMisc.setup_auto_root()
-
+      MiniSessions.setup()
       -- Restore latest cursor position on file open
       MiniMisc.setup_restore_cursor()
 

@@ -5,6 +5,7 @@
 scheme set tomorrow-night
 set fish_greeting
 
+eval (opam env)
 
 set -gx EDITOR nvim
 set -gx ZSH $HOME/.oh-my-zsh        # kept for reference; unused in fish
