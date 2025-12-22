@@ -19,6 +19,7 @@ fish_add_path /home/nerfthisdev/.spicetify
 
 
 abbr -a c  'clear'
+abbr -a ssh 'kitten ssh'
 abbr -a ll 'eza -lh'
 abbr -a l  'eza -lah'
 abbr -a lg 'lazygit'

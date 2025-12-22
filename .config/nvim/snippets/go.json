@@ -1,0 +1,8 @@
+{
+  "yaml tag": {
+    "prefix": "yaml",
+    "body": "`yaml:\"$1\"`",
+    "description": "Snippet for struct yaml tag"
+  }
+}
+
