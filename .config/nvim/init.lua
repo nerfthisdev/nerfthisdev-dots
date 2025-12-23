@@ -4,6 +4,11 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
+vim.snippet = nil
+
+vim.g.matchparen_timeout = 50
+vim.g.matchparen_insert_timeout = 30
+
 -- Set to true if you have a Nerd Font installed and selected in the terminal
 vim.g.have_nerd_font = true
 
@@ -511,7 +516,7 @@ require('lazy').setup({
           local client = vim.lsp.get_client_by_id(event.data.client_id)
           if client and client_supports_method(client, vim.lsp.protocol.Methods.textDocument_documentHighlight, event.buf) then
             local highlight_augroup = vim.api.nvim_create_augroup('kickstart-lsp-highlight', { clear = false })
-            vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
+            vim.api.nvim_create_autocmd({ 'CursorHold' }, {
               buffer = event.buf,
               group = highlight_augroup,
               callback = vim.lsp.buf.document_highlight,
@@ -723,6 +728,13 @@ require('lazy').setup({
           end
           return 'make install_jsregexp'
         end)(),
+        opts = function()
+          require('luasnip').config.setup {
+            history = true,
+            region_check_events = 'InsertEnter',
+            delete_check_events = 'TextChanged,InsertLeave',
+          }
+        end,
         dependencies = {
           -- `friendly-snippets` contains a variety of premade snippets.
           --    See the README about individual language/framework/plugin snippets:
@@ -737,7 +749,6 @@ require('lazy').setup({
             end,
           },
         },
-        opts = {},
       },
       'folke/lazydev.nvim',
     },
@@ -880,7 +891,7 @@ require('lazy').setup({
         --  the list of additional_vim_regex_highlighting and disabled languages for indent.
         additional_vim_regex_highlighting = { 'ruby' },
       },
-      indent = { enable = true, disable = { 'ruby' } },
+      indent = { enable = true, disable = { 'ruby', 'go' } },
     },
     -- There are additional nvim-treesitter modules that you can use to interact
     -- with nvim-treesitter. You should go explore a few and see what interests you:
@@ -938,7 +949,21 @@ require('lazy').setup({
   },
 })
 
-vim.notify = require 'notify'
+function Leave_snippet()
+  if
+    ((vim.v.event.old_mode == 's' and vim.v.event.new_mode == 'n') or vim.v.event.old_mode == 'i')
+    and require('luasnip').session.current_nodes[vim.api.nvim_get_current_buf()]
+    and not require('luasnip').session.jump_active
+  then
+    require('luasnip').unlink_current()
+  end
+end
 
+-- stop snippets when you leave to normal mode
+vim.api.nvim_command [[
+    autocmd ModeChanged * lua Leave_snippet()
+]]
+
+vim.notify = require 'notify'
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et

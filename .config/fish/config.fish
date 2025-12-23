@@ -5,6 +5,8 @@
 scheme set tomorrow-night
 set fish_greeting
 
+set fish_cursor_default block
+
 eval (opam env)
 
 set -gx EDITOR nvim
@@ -24,7 +26,6 @@ abbr -a ll 'eza -lh'
 abbr -a l  'eza -lah'
 abbr -a lg 'lazygit'
 abbr -a mvim 'NVIM_APPNAME=nvim-minimax nvim'
-
 
 if status is-interactive
     # Commands to run in interactive sessions can go here
