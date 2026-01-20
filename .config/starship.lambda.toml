@@ -1,0 +1,147 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+palette = "nord"
+[palettes.nord]
+rosewater = "#f0c674"
+flamingo  = "#cc6666"
+pink      = "#b294bb"
+orange    = "#de935f"
+red       = "#cc6666"
+maroon    = "#a54242"
+peach     = "#d08770"
+yellow    = "#f0c674"
+green     = "#8abeb7"
+teal      = "#8abeb7"
+sky       = "#81a2be"
+sapphire  = "#81a2be"
+blue      = "#5e81ac"
+lavender  = "#b48ead"
+text      = "#d8dee9"
+subtext1  = "#e5e9f0"
+subtext0  = "#eceff4"
+overlay2  = "#4c566a"
+overlay1  = "#434c5e"
+overlay0  = "#3b4252"
+surface2  = "#2e3440"
+surface1  = "#2e3440"
+surface0  = "#2e3440"
+base      = "#2e3440"
+mantle    = "#3b4252"
+crust     = "#434c5e"
+# --- Prompt layout (lambda) ---
+format = """
+$username\
+$directory\
+$git_branch\
+$git_status\
+$fill\
+$cmd_duration\
+$docker_context\
+$line_break\
+$character"""
+
+# Align right-side bits (duration/docker) nicely
+[fill]
+symbol = " "
+
+# --- Username ---
+[username]
+show_always = true
+style_user = "fg:blue"
+style_root = "fg:blue"
+format = "[$user]($style) "
+
+# --- Directory ---
+[directory]
+style = "fg:peach"
+format = "[$path]($style) "
+truncation_length = 3
+truncation_symbol = "…/"
+
+[directory.substitutions]
+"Documents" = "󰈙 "
+"Downloads" = " "
+"Music"     = "󰝚 "
+"Pictures"  = " "
+"Developer" = "󰲋 "
+
+# --- Git ---
+[git_branch]
+symbol = " "
+style = "fg:teal"
+format = "[$symbol$branch]($style) "
+
+[git_status]
+style = "fg:teal"
+format = "[$all_status$ahead_behind]($style) "
+
+# --- Language / runtime (auto-detected by Starship) ---
+# Keep it minimal: show only symbol (and version if you want).
+[c]
+symbol = " "
+style = "fg:teal"
+format = "[$symbol]($style)"
+
+[rust]
+symbol = " "
+style = "fg:teal"
+format = "[$symbol]($style)"
+
+[golang]
+symbol = " "
+style = "fg:teal"
+format = "[$symbol]($style)"
+
+[nodejs]
+symbol = " "
+style = "fg:teal"
+format = "[$symbol]($style)"
+
+[php]
+symbol = " "
+style = "fg:teal"
+format = "[$symbol]($style)"
+
+[java]
+symbol = " "
+style = "fg:teal"
+format = "[$symbol]($style)"
+
+[kotlin]
+symbol = " "
+style = "fg:teal"
+format = "[$symbol]($style)"
+
+[haskell]
+symbol = " "
+style = "fg:teal"
+format = "[$symbol]($style)"
+
+[python]
+symbol = " "
+style = "fg:teal"
+format = "[$symbol]($style)"
+
+[lua]
+symbol = "󰢱 "
+style = "fg:teal"
+format = "[$symbol]($style)"
+
+# --- Docker context (only when relevant) ---
+[docker_context]
+symbol = " "
+style = "fg:overlay1"
+format = "[$symbol$context]($style) "
+
+# --- Command duration (optional but very helpful) ---
+[cmd_duration]
+min_time = 500
+style = "fg:overlay1"
+format = "[ 󱎫 $duration ]($style)"
+
+# --- Lambda prompt char ---
+[character]
+success_symbol = "[λ](fg:green) "
+error_symbol   = "[λ](fg:red) "
+vicmd_symbol   = "[λ](fg:yellow) "
+

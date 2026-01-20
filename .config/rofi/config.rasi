@@ -1,0 +1,11 @@
+configuration {
+    modi: "drun,run,window";                    // Available modes
+    show-icons: true;                    // Show app icons
+    font: "JetBrainsMono Nerd Font 12";  // Global font
+    sort: true;
+    matching: "prefix";
+    disable-history: false;
+}
+
+@theme "~/.config/rofi/theme.rasi"
+

@@ -17,7 +17,6 @@ $haskell\
 $python\
 $lua\
 $docker_context\
-$cmd_duration\
 $line_break$character"""
 
 palette = 'nord'
@@ -137,7 +136,7 @@ format = '[[ $symbol( $version) ](fg:teal)]($style)'
 [golang]
 symbol = ""
 style = "fg:teal"
-format = '[[ $symbol ](fg:teal)]($style)'
+format = '[[ $symbol( $version) ](fg:teal)]($style)'
 
 # PHP Module
 [php]
@@ -186,22 +185,16 @@ format = '[[ $symbol( $context) ](fg:color_bg3)]($style)'
 disabled = false
 time_format = "%R"
 style = "fg:peach"
-format = '[[  $time ](fg:lavender)]($style)'
+format = '[[  $time ](fg:purple)]($style)'
 
 # Line Break Module
 [line_break]
 disabled = false
 
-
-[cmd_duration]
-min_time = 500
-style = "fg:overlay1"
-format = "[ 󱎫 $duration ]($style)"
-
 # Character Module
 [character]
 format = """
 [╰─$symbol](fg:overlay1) """
-success_symbol = '[λ](fg:bold text)'
-error_symbol = '[λ](fg:bold red)'
+success_symbol = '[](fg:bold text)'
+error_symbol = '[×](fg:bold red)'
 
