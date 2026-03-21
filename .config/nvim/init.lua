@@ -1,4 +1,3 @@
--- Set <space> as the leader key
 -- See `:help mapleader`
 --  NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
 vim.g.mapleader = ' '
@@ -97,6 +96,16 @@ vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
 -- Diagnostic keymaps
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
+
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = { 'c', 'cpp', 'h', 'hpp' },
+  callback = function()
+    vim.opt_local.tabstop = 2
+    vim.opt_local.shiftwidth = 2
+    vim.opt_local.softtabstop = 2
+    vim.opt_local.expandtab = true
+  end,
+})
 
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
 -- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
@@ -607,8 +616,10 @@ require('lazy').setup({
         ts_ls = {},
         yamlls = {},
         qmlls = {},
+        postgres_lsp = {},
         --
         clangd = {},
+        rust_analyzer = {},
         gopls = {
           settings = {
             gopls = {
@@ -778,7 +789,7 @@ require('lazy').setup({
         -- <c-k>: Toggle signature help
         --
         -- See :h blink-cmp-config-keymap for defining your own keymap
-        preset = 'enter',
+        preset = 'default',
 
         -- For more advanced Luasnip keymaps (e.g. selecting choice nodes, expansion) see:
         --    https://github.com/L3MON4D3/LuaSnip?tab=readme-ov-file#keymaps
@@ -823,12 +834,8 @@ require('lazy').setup({
     'eldritch-theme/eldritch.nvim',
     lazy = false,
     priority = 1000,
-    config = function()
-      require('eldritch').setup {}
-
-      vim.cmd.colorscheme 'eldritch'
-    end,
   },
+
   -- Highlight todo, notes, etc in comments
   { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
 
@@ -949,21 +956,8 @@ require('lazy').setup({
   },
 })
 
-function Leave_snippet()
-  if
-    ((vim.v.event.old_mode == 's' and vim.v.event.new_mode == 'n') or vim.v.event.old_mode == 'i')
-    and require('luasnip').session.current_nodes[vim.api.nvim_get_current_buf()]
-    and not require('luasnip').session.jump_active
-  then
-    require('luasnip').unlink_current()
-  end
-end
-
 -- stop snippets when you leave to normal mode
-vim.api.nvim_command [[
-    autocmd ModeChanged * lua Leave_snippet()
-]]
 
+vim.cmd.colorscheme 'catppuccin'
 vim.notify = require 'notify'
--- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et

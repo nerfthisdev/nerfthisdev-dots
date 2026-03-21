@@ -25,3 +25,4 @@ x-scheme-handler/chrome=zen.desktop;
 x-scheme-handler/http=zen.desktop;
 x-scheme-handler/https=zen.desktop;
 inode/directory=org.kde.dolphin;
+x-scheme-handler/discord=vesktop.desktop
